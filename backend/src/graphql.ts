@@ -8,76 +8,93 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface CreateAlbumInput {
+export class CreateAlbumInput {
     exampleField?: Nullable<number>;
 }
 
-export interface UpdateAlbumInput {
+export class UpdateAlbumInput {
     id: number;
 }
 
-export interface CreateTrackInput {
+export class CreateTrackInput {
     exampleField?: Nullable<number>;
 }
 
-export interface UpdateTrackInput {
+export class UpdateTrackInput {
     id: number;
 }
 
-export interface CreateUserInput {
+export class CreateUserInput {
     exampleField?: Nullable<number>;
 }
 
-export interface UpdateUserInput {
+export class UpdateUserInput {
     id: number;
 }
 
-export interface CreateUsersTrackInput {
+export class CreateUsersTrackInput {
     exampleField?: Nullable<number>;
 }
 
-export interface UpdateUsersTrackInput {
+export class UpdateUsersTrackInput {
     id: number;
 }
 
-export interface Album {
+export class Album {
     exampleField?: Nullable<number>;
     id: string;
     album_name?: Nullable<string>;
     album_prompt?: Nullable<string>;
     album_art_url?: Nullable<string>;
     total_desired_tracks?: Nullable<number>;
-    Track: Track[];
     Users_tracks: Users_tracks[];
 }
 
-export interface IQuery {
-    albums(): Nullable<Album>[] | Promise<Nullable<Album>[]>;
-    album(id: number): Nullable<Album> | Promise<Nullable<Album>>;
-    tracks(): Nullable<Track>[] | Promise<Nullable<Track>[]>;
-    track(id: number): Nullable<Track> | Promise<Nullable<Track>>;
-    users(): Nullable<User>[] | Promise<Nullable<User>[]>;
-    user(id: number): Nullable<User> | Promise<Nullable<User>>;
-    usersTracks(): Nullable<UsersTrack>[] | Promise<Nullable<UsersTrack>[]>;
-    usersTrack(id: number): Nullable<UsersTrack> | Promise<Nullable<UsersTrack>>;
+export abstract class IQuery {
+    abstract albums(): Nullable<Album>[] | Promise<Nullable<Album>[]>;
+
+    abstract album(id: number): Nullable<Album> | Promise<Nullable<Album>>;
+
+    abstract tracks(): Nullable<Track>[] | Promise<Nullable<Track>[]>;
+
+    abstract track(id: number): Nullable<Track> | Promise<Nullable<Track>>;
+
+    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
+
+    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract usersTracks(): Nullable<UsersTrack>[] | Promise<Nullable<UsersTrack>[]>;
+
+    abstract usersTrack(id: number): Nullable<UsersTrack> | Promise<Nullable<UsersTrack>>;
 }
 
-export interface IMutation {
-    createAlbum(createAlbumInput: CreateAlbumInput): Album | Promise<Album>;
-    updateAlbum(updateAlbumInput: UpdateAlbumInput): Album | Promise<Album>;
-    removeAlbum(id: number): Nullable<Album> | Promise<Nullable<Album>>;
-    createTrack(createTrackInput: CreateTrackInput): Track | Promise<Track>;
-    updateTrack(updateTrackInput: UpdateTrackInput): Track | Promise<Track>;
-    removeTrack(id: number): Nullable<Track> | Promise<Nullable<Track>>;
-    createUser(createUserInput: CreateUserInput): User | Promise<User>;
-    updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
-    removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
-    createUsersTrack(createUsersTrackInput: CreateUsersTrackInput): UsersTrack | Promise<UsersTrack>;
-    updateUsersTrack(updateUsersTrackInput: UpdateUsersTrackInput): UsersTrack | Promise<UsersTrack>;
-    removeUsersTrack(id: number): Nullable<UsersTrack> | Promise<Nullable<UsersTrack>>;
+export abstract class IMutation {
+    abstract createAlbum(createAlbumInput: CreateAlbumInput): Album | Promise<Album>;
+
+    abstract updateAlbum(updateAlbumInput: UpdateAlbumInput): Album | Promise<Album>;
+
+    abstract removeAlbum(id: number): Nullable<Album> | Promise<Nullable<Album>>;
+
+    abstract createTrack(createTrackInput: CreateTrackInput): Track | Promise<Track>;
+
+    abstract updateTrack(updateTrackInput: UpdateTrackInput): Track | Promise<Track>;
+
+    abstract removeTrack(id: number): Nullable<Track> | Promise<Nullable<Track>>;
+
+    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
+
+    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
+
+    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract createUsersTrack(createUsersTrackInput: CreateUsersTrackInput): UsersTrack | Promise<UsersTrack>;
+
+    abstract updateUsersTrack(updateUsersTrackInput: UpdateUsersTrackInput): UsersTrack | Promise<UsersTrack>;
+
+    abstract removeUsersTrack(id: number): Nullable<UsersTrack> | Promise<Nullable<UsersTrack>>;
 }
 
-export interface Track {
+export class Track {
     id: string;
     track_name?: Nullable<string>;
     track_description?: Nullable<string>;
@@ -87,12 +104,11 @@ export interface Track {
     wav_file_path?: Nullable<string>;
     is_processed?: Nullable<boolean>;
     mp3_file_path?: Nullable<string>;
-    Album: Album;
     Users_tracks: Users_tracks[];
     exampleField?: Nullable<number>;
 }
 
-export interface User {
+export class User {
     id: string;
     user_name?: Nullable<string>;
     is_admin?: Nullable<boolean>;
@@ -102,7 +118,7 @@ export interface User {
     exampleField?: Nullable<number>;
 }
 
-export interface Users_tracks {
+export class Users_tracks {
     id: string;
     stream_service_name?: Nullable<string>;
     User?: Nullable<User>;
@@ -110,7 +126,7 @@ export interface Users_tracks {
     Album: Album;
 }
 
-export interface UsersTrack {
+export class UsersTrack {
     exampleField?: Nullable<number>;
 }
 

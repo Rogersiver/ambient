@@ -22,7 +22,6 @@ async function main() {
   console.log(album);
   const track = await prisma.track.create({
     data: {
-      album_id: album.id,
       track_name: 'ambient-001',
       track_description: 'sleepytime',
     },

@@ -20,7 +20,7 @@ CREATE TABLE Track (
   is_uploaded            BOOLEAN DEFAULT false,
   wav_file_path          VARCHAR(50),
   is_processed           BOOLEAN DEFAULT false,
-  mp3_file_path          VARCHAR(50),
+  mp3_file_path          VARCHAR(50)
 );
 
 CREATE TABLE User (

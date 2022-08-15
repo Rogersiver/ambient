@@ -14,7 +14,6 @@ type Album {
   album_prompt: String
   album_art_url: String
   total_desired_tracks: Int
-  Track: [Track!]!
   Users_tracks: [Users_tracks!]!
 }
 
@@ -28,7 +27,6 @@ type Track {
   wav_file_path: String
   is_processed: Boolean
   mp3_file_path: String
-  Album: Album!
   Users_tracks: [Users_tracks!]!
 }
 

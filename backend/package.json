@@ -6,14 +6,18 @@
   "private": true,
   "license": "UNLICENSED",
   "prisma": {
-    "schema": "./schema.prisma"
+    "seed": "ts-node ./src/prisma/seed.ts",
+    "schema": "./src/prisma/schema.prisma"
   },
   "scripts": {
     "prebuild": "rimraf dist",
+    "dev": "concurrently \"yarn:start:dev\" \"yarn:gen-typings\" \"yarn:prisma:generate\"",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
+    "gen-typings": "ts-node src/generate-typings",
     "start:dev": "nest start --watch",
+    "prisma:generate": "npx prisma generate --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -26,7 +30,9 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
+    "@prisma-korea/graphql-schema-generator": "^0.3.0",
     "class-transformer": "^0.5.1",
     "prisma-nestjs-graphql": "^17.0.0",
     "reflect-metadata": "^0.1.13",
@@ -47,6 +53,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "apollo-server-express": "^3.10.1",
+    "concurrently": "^7.3.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

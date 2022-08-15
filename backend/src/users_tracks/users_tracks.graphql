@@ -1,0 +1,24 @@
+type UsersTrack {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateUsersTrackInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateUsersTrackInput {
+  id: Int!
+}
+
+type Query {
+  usersTracks: [UsersTrack]!
+  usersTrack(id: Int!): UsersTrack
+}
+
+type Mutation {
+  createUsersTrack(createUsersTrackInput: CreateUsersTrackInput!): UsersTrack!
+  updateUsersTrack(updateUsersTrackInput: UpdateUsersTrackInput!): UsersTrack!
+  removeUsersTrack(id: Int!): UsersTrack
+}

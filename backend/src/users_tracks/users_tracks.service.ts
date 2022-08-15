@@ -10,14 +10,14 @@ export class UsersTracksService {
   }
 
   findAll() {
-    const albums = this.prisma.users_tracks.findMany({
+    const users_tracks = this.prisma.users_tracks.findMany({
       include: {
         User: true,
         Track: true,
         Album: true,
       },
     });
-    return albums;
+    return users_tracks;
   }
 
   findOne(usersTracksFindFirstArgs: Prisma.Users_tracksFindFirstArgs) {
@@ -29,7 +29,7 @@ export class UsersTracksService {
     updateUsersTracksInput: Prisma.Users_tracksUpdateInput,
     usersTracksWhereInput: Prisma.Users_tracksWhereUniqueInput,
   ) {
-    return this.prisma.album.update({
+    return this.prisma.users_tracks.update({
       data: updateUsersTracksInput,
       where: usersTracksWhereInput,
     });

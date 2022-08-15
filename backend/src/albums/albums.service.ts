@@ -1,25 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAlbumInput } from './dto/create-album.input';
-import { UpdateAlbumInput } from './dto/update-album.input';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class AlbumsService {
-  create(createAlbumInput: CreateAlbumInput) {
-    return 'This action adds a new album';
+  constructor(private prisma: PrismaService) {}
+  create(createAlbumInput: Prisma.AlbumCreateInput) {
+    return this.prisma.album.create({ data: createAlbumInput });
   }
 
   findAll() {
-    return `This action returns all albums`;
+    const albums = this.prisma.album.findMany({
+      include: {
+        Users_tracks: {
+          include: {
+            User: true,
+            Track: true,
+          },
+        },
+      },
+    });
+    return albums;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} album`;
+  findOne(albumFindFirstArgs: Prisma.AlbumFindFirstArgs) {
+    const album = this.prisma.album.findFirst(albumFindFirstArgs);
+    return album;
   }
 
-  update(id: number, updateAlbumInput: UpdateAlbumInput) {
-    return `This action updates a #${id} album`;
+  update(
+    updateAlbumInput: Prisma.AlbumUpdateInput,
+    albumWhereInput: Prisma.AlbumWhereUniqueInput,
+  ) {
+    return this.prisma.album.update({
+      data: updateAlbumInput,
+      where: albumWhereInput,
+    });
   }
-
   remove(id: number) {
     return `This action removes a #${id} album`;
   }

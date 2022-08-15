@@ -1,14 +1,26 @@
 type User {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  user_name: String
+  is_admin: Boolean
+  insta: String
+  created_at: DateTime
+  Users_tracks: [Users_tracks!]!
 }
 
 input CreateUserInput {
-  # Example field (placeholder)
   exampleField: Int
+  user_name: String!
+  is_admin: Boolean
+  insta: String
 }
 
 input UpdateUserInput {
+  user_name: String
+  is_admin: Boolean
+  insta: String
+}
+
+input UserWhereInput {
   id: Int!
 }
 
@@ -19,6 +31,9 @@ type Query {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateUser(
+    updateUserInput: UpdateUserInput!
+    userWhereInput: UserWhereInput!
+  ): User!
   removeUser(id: Int!): User
 }

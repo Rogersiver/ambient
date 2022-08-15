@@ -1,14 +1,37 @@
 type Track {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  track_name: String
+  track_description: String
+  created_at: DateTime
+  uploaded_at: DateTime
+  is_uploaded: Boolean
+  wav_file_path: String
+  is_processed: Boolean
+  mp3_file_path: String
+  Users_tracks: [Users_tracks!]!
 }
 
 input CreateTrackInput {
-  # Example field (placeholder)
-  exampleField: Int
+  track_name: String
+  track_description: String
+  uploaded_at: DateTime
+  is_uploaded: Boolean
+  wav_file_path: String
+  is_processed: Boolean
+  mp3_file_path: String
 }
 
 input UpdateTrackInput {
+  track_name: String
+  track_description: String
+  uploaded_at: DateTime
+  is_uploaded: Boolean
+  wav_file_path: String
+  is_processed: Boolean
+  mp3_file_path: String
+}
+
+input TrackWhereInput {
   id: Int!
 }
 
@@ -19,6 +42,9 @@ type Query {
 
 type Mutation {
   createTrack(createTrackInput: CreateTrackInput!): Track!
-  updateTrack(updateTrackInput: UpdateTrackInput!): Track!
+  updateTrack(
+    updateTrackInput: UpdateTrackInput!
+    trackWhereInput: TrackWhereInput
+  ): Track!
   removeTrack(id: Int!): Track
 }

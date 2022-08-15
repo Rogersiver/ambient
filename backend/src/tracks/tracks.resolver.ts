@@ -2,13 +2,14 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { TracksService } from './tracks.service';
 import { CreateTrackInput } from './dto/create-track.input';
 import { UpdateTrackInput } from './dto/update-track.input';
+import { Prisma } from '@prisma/client';
 
 @Resolver('Track')
 export class TracksResolver {
   constructor(private readonly tracksService: TracksService) {}
 
   @Mutation('createTrack')
-  create(@Args('createTrackInput') createTrackInput: CreateTrackInput) {
+  create(@Args('createTrackInput') createTrackInput: Prisma.TrackCreateInput) {
     return this.tracksService.create(createTrackInput);
   }
 
@@ -18,13 +19,18 @@ export class TracksResolver {
   }
 
   @Query('track')
-  findOne(@Args('id') id: number) {
-    return this.tracksService.findOne(id);
+  findOne(
+    @Args('trackFindFirstArgs') trackFindFirstArgs: Prisma.TrackFindFirstArgs,
+  ) {
+    return this.tracksService.findOne(trackFindFirstArgs);
   }
 
   @Mutation('updateTrack')
-  update(@Args('updateTrackInput') updateTrackInput: UpdateTrackInput) {
-    return this.tracksService.update(updateTrackInput.id, updateTrackInput);
+  update(
+    @Args('updateTrackInput') updateTrackInput: Prisma.TrackUpdateInput,
+    @Args('trackWhereInput') trackWhereInput: Prisma.TrackWhereUniqueInput,
+  ) {
+    return this.tracksService.update(updateTrackInput, trackWhereInput);
   }
 
   @Mutation('removeTrack')

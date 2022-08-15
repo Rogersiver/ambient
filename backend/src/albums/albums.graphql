@@ -1,15 +1,28 @@
 type Album {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  album_name: String
+  album_prompt: String
+  album_art_url: String
+  total_desired_tracks: Int
+  Users_tracks: [Users_tracks!]!
 }
 
 input CreateAlbumInput {
-  # Example field (placeholder)
-  exampleField: Int
+  album_name: String
+  album_prompt: String
+  album_art_url: String
+  total_desired_tracks: Int
 }
 
 input UpdateAlbumInput {
-  id: Int!
+  album_name: String
+  album_prompt: String
+  album_art_url: String
+  total_desired_tracks: Int
+}
+
+input AlbumWhereInput {
+  id: ID!
 }
 
 type Query {
@@ -19,6 +32,9 @@ type Query {
 
 type Mutation {
   createAlbum(createAlbumInput: CreateAlbumInput!): Album!
-  updateAlbum(updateAlbumInput: UpdateAlbumInput!): Album!
+  updateAlbum(
+    updateAlbumInput: UpdateAlbumInput!
+    albumWhereInput: AlbumWhereInput!
+  ): Album!
   removeAlbum(id: Int!): Album
 }

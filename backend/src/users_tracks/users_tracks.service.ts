@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUsersTrackInput } from './dto/create-users_track.input';
-import { UpdateUsersTrackInput } from './dto/update-users_track.input';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class UsersTracksService {
-  create(createUsersTrackInput: CreateUsersTrackInput) {
-    return 'This action adds a new usersTrack';
+  constructor(private prisma: PrismaService) {}
+  create(createUsersTracksInput: Prisma.Users_tracksCreateInput) {
+    return this.prisma.users_tracks.create({ data: createUsersTracksInput });
   }
 
   findAll() {
-    return `This action returns all usersTracks`;
+    const albums = this.prisma.users_tracks.findMany({
+      include: {
+        User: true,
+        Track: true,
+        Album: true,
+      },
+    });
+    return albums;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usersTrack`;
+  findOne(usersTracksFindFirstArgs: Prisma.Users_tracksFindFirstArgs) {
+    const album = this.prisma.users_tracks.findFirst(usersTracksFindFirstArgs);
+    return album;
   }
 
-  update(id: number, updateUsersTrackInput: UpdateUsersTrackInput) {
-    return `This action updates a #${id} usersTrack`;
+  update(
+    updateUsersTracksInput: Prisma.Users_tracksUpdateInput,
+    usersTracksWhereInput: Prisma.Users_tracksWhereUniqueInput,
+  ) {
+    return this.prisma.album.update({
+      data: updateUsersTracksInput,
+      where: usersTracksWhereInput,
+    });
   }
-
   remove(id: number) {
-    return `This action removes a #${id} usersTrack`;
+    return `This action removes a #${id} album`;
   }
 }

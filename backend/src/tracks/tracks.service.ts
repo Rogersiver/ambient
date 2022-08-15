@@ -1,23 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTrackInput } from './dto/create-track.input';
-import { UpdateTrackInput } from './dto/update-track.input';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class TracksService {
-  create(createTrackInput: CreateTrackInput) {
-    return 'This action adds a new track';
+  constructor(private prisma: PrismaService) {}
+  create(createTrackInput: Prisma.TrackCreateInput) {
+    return this.prisma.track.create({ data: createTrackInput });
   }
 
   findAll() {
-    return `This action returns all tracks`;
+    const tracks = this.prisma.track.findMany({
+      include: {
+        Users_tracks: {
+          include: {
+            User: true,
+            Album: true,
+          },
+        },
+      },
+    });
+    return tracks;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} track`;
+  findOne(trackFindFirstArgs: Prisma.TrackFindFirstArgs) {
+    const track = this.prisma.track.findFirst(trackFindFirstArgs);
+    return track;
   }
 
-  update(id: number, updateTrackInput: UpdateTrackInput) {
-    return `This action updates a #${id} track`;
+  update(
+    updateTrackInput: Prisma.TrackUpdateInput,
+    trackWhereInput: Prisma.TrackWhereUniqueInput,
+  ) {
+    return this.prisma.track.update({
+      data: updateTrackInput,
+      where: trackWhereInput,
+    });
   }
 
   remove(id: number) {

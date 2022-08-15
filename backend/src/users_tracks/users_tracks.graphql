@@ -1,14 +1,26 @@
 type UsersTrack {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  stream_service_name: String
+  User: User
+  Track: Track
+  Album: Album!
 }
 
 input CreateUsersTrackInput {
-  # Example field (placeholder)
-  exampleField: Int
+  stream_service_name: String
+  user_id: Int
+  track_id: Int
+  album_id: Int
 }
 
 input UpdateUsersTrackInput {
+  stream_service_name: String
+  user_id: Int
+  track_id: Int
+  album_id: Int
+}
+
+input UsersTracksWhereInput {
   id: Int!
 }
 
@@ -19,6 +31,9 @@ type Query {
 
 type Mutation {
   createUsersTrack(createUsersTrackInput: CreateUsersTrackInput!): UsersTrack!
-  updateUsersTrack(updateUsersTrackInput: UpdateUsersTrackInput!): UsersTrack!
+  updateUsersTrack(
+    updateUsersTrackInput: UpdateUsersTrackInput!
+    usersTracksWhereInput: UsersTracksWhereInput
+  ): UsersTrack!
   removeUsersTrack(id: Int!): UsersTrack
 }

@@ -38,7 +38,9 @@ export class TracksService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} track`;
+  remove(trackWhereUniqueInput: Prisma.TrackWhereUniqueInput) {
+    return this.prisma.track.delete({
+      where: trackWhereUniqueInput
+    })
   }
 }

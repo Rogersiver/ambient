@@ -7,6 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { TracksModule } from './tracks/tracks.module';
 import { AlbumsModule } from './albums/albums.module';
+import { MulterModule } from '@nestjs/platform-express';
 import { join } from 'path';
 import { UsersTracksModule } from './users_tracks/users_tracks.module';
 
@@ -20,6 +21,9 @@ import { UsersTracksModule } from './users_tracks/users_tracks.module';
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
       },
+    }),
+    MulterModule.register({
+      dest: './files',
     }),
     UsersModule,
     TracksModule,

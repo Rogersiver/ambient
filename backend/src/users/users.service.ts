@@ -23,8 +23,8 @@ export class UsersService {
     return users;
   }
 
-  findOne(userFindFirstArgs: Prisma.UserFindFirstArgs) {
-    const user = this.prisma.user.findFirst(userFindFirstArgs);
+  findOne(userWhereInput: Prisma.UserWhereUniqueInput) {
+    const user = this.prisma.user.findUnique({ where: userWhereInput });
     return user;
   }
 
@@ -35,6 +35,14 @@ export class UsersService {
     return this.prisma.user.update({
       data: updateUserInput,
       where: userWhereInput,
+      include: {
+        Users_tracks: {
+          include: {
+            Track: true,
+            Album: true,
+          },
+        },
+      },
     });
   }
 

@@ -23,10 +23,10 @@ export class UsersTracksResolver {
 
   @Query('usersTrack')
   findOne(
-    @Args('usersTracksFindFirstArgs')
-    usersTracksFindFirstArgs: Prisma.Users_tracksFindFirstArgs,
+    @Args('usersTracksWhereUniqueInput')
+    usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput,
   ) {
-    return this.usersTracksService.findOne(usersTracksFindFirstArgs);
+    return this.usersTracksService.findOne(usersTracksWhereUniqueInput);
   }
 
   @Mutation('updateUsersTrack')
@@ -43,7 +43,7 @@ export class UsersTracksResolver {
   }
 
   @Mutation('removeUsersTrack')
-  remove(@Args('id') id: number) {
-    return this.usersTracksService.remove(id);
+  remove(@Args('usersTracksWhereUniqueInput') usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput) {
+    return this.usersTracksService.remove(usersTracksWhereUniqueInput);
   }
 }

@@ -12,7 +12,7 @@ type Album {
   id: ID!
   album_name: String
   album_prompt: String
-  album_art_url: String
+  art_cloudinary_url: String
   total_desired_tracks: Int
   Users_tracks: [Users_tracks!]!
 }
@@ -24,15 +24,16 @@ type Track {
   created_at: DateTime
   uploaded_at: DateTime
   is_uploaded: Boolean
-  wav_file_path: String
+  wav_cloudinary_url: String
   is_processed: Boolean
-  mp3_file_path: String
+  mp3_cloudinary_url: String
+  wvfrm_cloudinary_url: String
   Users_tracks: [Users_tracks!]!
 }
 
 type User {
   id: ID!
-  user_name: String
+  user_name: String!
   is_admin: Boolean
   insta: String
   created_at: DateTime
@@ -41,8 +42,10 @@ type User {
 
 type Users_tracks {
   id: ID!
+  url_hash: String
+  secret_key: String
   stream_service_name: String
-  User: User
+  User: User!
   Track: Track
   Album: Album!
 }

@@ -15,7 +15,7 @@ async function main() {
     data: {
       album_name: 'best album ever',
       album_prompt: 'try to relax',
-      album_art_url: null,
+      art_cloudinary_url: null,
       total_desired_tracks: 10,
     },
   });
@@ -24,11 +24,19 @@ async function main() {
     data: {
       track_name: 'ambient-001',
       track_description: 'sleepytime',
+      is_uploaded: false,
+      is_processed: false,
+      wav_cloudinary_url: '',
+      wvfrm_cloudinary_url: '',
+      mp3_cloudinary_url: '',
     },
   });
   console.log(track);
   const userTrack = await prisma.users_tracks.create({
     data: {
+      stream_service_name: '',
+      secret_key: '',
+      url_hash: '',
       user_id: user.id,
       track_id: track.id,
       album_id: album.id,

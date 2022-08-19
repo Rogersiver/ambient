@@ -2,7 +2,7 @@ type Album {
   id: ID!
   album_name: String
   album_prompt: String
-  album_art_url: String
+  art_cloudinary_url: String
   total_desired_tracks: Int
   Users_tracks: [Users_tracks!]!
 }
@@ -10,14 +10,14 @@ type Album {
 input CreateAlbumInput {
   album_name: String
   album_prompt: String
-  album_art_url: String
+  art_cloudinary_url: String
   total_desired_tracks: Int
 }
 
 input UpdateAlbumInput {
   album_name: String
   album_prompt: String
-  album_art_url: String
+  art_cloudinary_url: String
   total_desired_tracks: Int
 }
 

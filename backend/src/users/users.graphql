@@ -21,12 +21,14 @@ input UpdateUserInput {
 }
 
 input UserWhereInput {
-  id: Int!
+  id: Int
+  user_name: String
+  insta: String
 }
 
 type Query {
   users: [User]!
-  user(id: Int!): User
+  user(userWhereInput: UserWhereInput!): User
 }
 
 type Mutation {

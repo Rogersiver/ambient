@@ -5,9 +5,11 @@ type Track {
   created_at: DateTime
   uploaded_at: DateTime
   is_uploaded: Boolean
-  wav_file_path: String
+  wav_cloudinary_url: String
   is_processed: Boolean
-  mp3_file_path: String
+  mp3_cloudinary_url: String
+  wvfrm_cloudinary_url: String
+
   Users_tracks: [Users_tracks!]!
 }
 
@@ -16,9 +18,10 @@ input CreateTrackInput {
   track_description: String
   uploaded_at: DateTime
   is_uploaded: Boolean
-  wav_file_path: String
+  wav_cloudinary_url: String
   is_processed: Boolean
-  mp3_file_path: String
+  mp3_cloudinary_url: String
+  wvfrm_cloudinary_url: String
 }
 
 input UpdateTrackInput {
@@ -26,18 +29,24 @@ input UpdateTrackInput {
   track_description: String
   uploaded_at: DateTime
   is_uploaded: Boolean
-  wav_file_path: String
+  wav_cloudinary_url: String
   is_processed: Boolean
-  mp3_file_path: String
+  mp3_cloudinary_url: String
+  wvfrm_cloudinary_url: String
 }
 
 input TrackWhereInput {
-  id: Int!
+  id: Int
+  track_name: String
+}
+
+input TrackWhereUniqueInput {
+  id: Int
 }
 
 type Query {
   tracks: [Track]!
-  track(id: Int!): Track
+  track(trackWhereInput: TrackWhereInput): Track
 }
 
 type Mutation {
@@ -46,5 +55,5 @@ type Mutation {
     updateTrackInput: UpdateTrackInput!
     trackWhereInput: TrackWhereInput
   ): Track!
-  removeTrack(id: Int!): Track
+  removeTrack(trackWhereUniqueInput: TrackWhereUniqueInput!): Track
 }

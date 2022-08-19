@@ -1,13 +1,17 @@
 type UsersTrack {
   id: ID!
   stream_service_name: String
-  User: User
+  url_hash: String
+  secret_key: String
+  User: User!
   Track: Track
   Album: Album!
 }
 
 input CreateUsersTrackInput {
   stream_service_name: String
+  url_hash: String
+  secret_key: String
   user_id: Int
   track_id: Int
   album_id: Int
@@ -18,6 +22,14 @@ input UpdateUsersTrackInput {
   user_id: Int
   track_id: Int
   album_id: Int
+  url_hash: String
+  secret_key: String
+}
+
+input UsersTracksWhereUniqueInput {
+  id: Int
+  url_hash: String
+  secret_key: String
 }
 
 input UsersTracksWhereInput {
@@ -26,7 +38,7 @@ input UsersTracksWhereInput {
 
 type Query {
   usersTracks: [UsersTrack]!
-  usersTrack(id: Int!): UsersTrack
+  usersTrack(usersTracksWhereUniqueInput: UsersTracksWhereUniqueInput!): UsersTrack
 }
 
 type Mutation {
@@ -35,5 +47,5 @@ type Mutation {
     updateUsersTrackInput: UpdateUsersTrackInput!
     usersTracksWhereInput: UsersTracksWhereInput
   ): UsersTrack!
-  removeUsersTrack(id: Int!): UsersTrack
+  removeUsersTrack(usersTracksWhereUniqueInput: UsersTracksWhereUniqueInput!): UsersTrack
 }

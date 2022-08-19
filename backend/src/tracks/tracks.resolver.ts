@@ -34,7 +34,7 @@ export class TracksResolver {
   }
 
   @Mutation('removeTrack')
-  remove(@Args('id') id: number) {
-    return this.tracksService.remove(id);
+  remove(@Args('trackWhereUniqueInput') trackWhereUniqueInput: Prisma.TrackWhereUniqueInput) {
+    return this.tracksService.remove(trackWhereUniqueInput);
   }
 }

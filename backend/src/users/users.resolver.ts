@@ -19,10 +19,8 @@ export class UsersResolver {
   }
 
   @Query('user')
-  findOne(
-    @Args('userFindFirstArgs') userFindFirstArgs: Prisma.UserFindFirstArgs,
-  ) {
-    return this.usersService.findOne(userFindFirstArgs);
+  findOne(@Args('userWhereInput') userWhereInput: Prisma.UserWhereUniqueInput) {
+    return this.usersService.findOne(userWhereInput);
   }
 
   @Mutation('updateUser')

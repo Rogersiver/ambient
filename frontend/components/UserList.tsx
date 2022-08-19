@@ -7,25 +7,28 @@ const Header = styled.h2`
 
 const ListContainer = styled.ul`
   list-style: none;
-  min-width: 350px; 
+  min-width: 350px;
+  max-width: 99vh;
+  margin: auto;
 `;
 
 const Divider = styled.hr`
   max-width: 350px;
   margin-left: 0;
-`
+`;
 
 const Id = styled.span`
   padding: 1vh;
   margin: auto;
-  ${down('sm')} {
+  ${down('md')} {
     margin-right: 10px;
   }
 `;
 
 const ListItemContainer = styled.li`
-  background-color: ${(props) => props.theme.palette.common.black};
+  background-color: ${(props) => props.theme.palette.colors.gray['900']};
   border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid white;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,26 +42,30 @@ const ListItemContainer = styled.li`
 `;
 
 const ListItemContent = styled.div`
-  padding-bottom: 2vh;
-  flex: 1 1 60%;
+  padding: 1vh;
+  ${down('sm')} {
+    padding: 0vh;
+  }
+  flex: 1 1 70%;
 `;
 
 const ListItemActions = styled.div`
-  flex: 1 1 40%;
+  flex: 1 1 30%;
 `;
 
 const ListItemActionsContent = styled.div`
-  width: full%;
-  margin: 0 auto;
+  margin: auto;
+  text-align: center;
 `;
 
-const ListItemName = styled.span``;
+const ListItemName = styled.span`
+  font-weight: bold;
+`;
 
 const ListItemData = styled.span``;
 
 const UserListItem = (props: any) => {
   const { user } = props;
-  console.log(user);
   return (
     <div>
       <ListItemContainer>
@@ -69,13 +76,15 @@ const UserListItem = (props: any) => {
           <ListItemData>{user.insta}</ListItemData>
           <br />
           <ListItemName>Created: </ListItemName>
-          <ListItemData>{new Date(user.created_at).toLocaleString()}</ListItemData>
+          <ListItemData>
+            {new Date(user.created_at).toLocaleString()}
+          </ListItemData>
           <br />
-          <ListItemName>isAdmin: </ListItemName>
-          <ListItemData>{JSON.stringify(user.is_admin)}</ListItemData>
         </ListItemContent>
         <ListItemActions>
-          <ListItemActionsContent>Actions Will Go Here</ListItemActionsContent>
+          <ListItemActionsContent>
+            <p>Actions</p>
+          </ListItemActionsContent>
         </ListItemActions>
         <Id>{user.id}</Id>
       </ListItemContainer>

@@ -33,7 +33,7 @@ export class UsersTracksResolver {
   update(
     @Args('updateUsersTrackInput')
     updateUsersTracksInput: Prisma.Users_tracksUpdateInput,
-    @Args('usersTrackWhereInput')
+    @Args('usersTracksWhereInput')
     usersTracksWhereInput: Prisma.Users_tracksWhereUniqueInput,
   ) {
     return this.usersTracksService.update(
@@ -43,7 +43,10 @@ export class UsersTracksResolver {
   }
 
   @Mutation('removeUsersTrack')
-  remove(@Args('usersTracksWhereUniqueInput') usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput) {
+  remove(
+    @Args('usersTracksWhereUniqueInput')
+    usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput,
+  ) {
     return this.usersTracksService.remove(usersTracksWhereUniqueInput);
   }
 }

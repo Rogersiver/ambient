@@ -5,16 +5,17 @@ async function main() {
   await prisma.user.deleteMany();
   const user = await prisma.user.create({
     data: {
-      user_name: 'user',
+      user_name: 'roger',
       is_admin: true,
-      insta: '@wonderlandbiiiitch',
+      insta: '@rogersiver',
     },
   });
   console.log(user);
   const album = await prisma.album.create({
     data: {
-      album_name: 'best album ever',
-      album_prompt: 'try to relax',
+      album_name: 'Sleep-Labs-000',
+      album_prompt:
+        'Ambient music is a genre of music that emphasizes tone and atmosphere over traditional musical structure or rhythm. It may lack net composition, beat, or structured melody. It uses textural layers of sound which can reward both passive and active listening and encourage a sense of calm or contemplation.',
       art_cloudinary_url: null,
       total_desired_tracks: 10,
     },
@@ -36,7 +37,7 @@ async function main() {
     data: {
       stream_service_name: '',
       secret_key: '',
-      url_hash: '',
+      url_hash: 'a74bao8r',
       user_id: user.id,
       track_id: track.id,
       album_id: album.id,

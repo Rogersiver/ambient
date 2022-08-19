@@ -6,14 +6,17 @@ import { PrismaService } from '../prisma.service';
 export class UsersTracksService {
   constructor(private prisma: PrismaService) {}
   create(createUsersTracksInput: Prisma.Users_tracksCreateInput) {
-    const url = Math.random().toString(36).substring(2, 15)
+    const url = Math.random().toString(36).substring(2, 15);
     createUsersTracksInput.url_hash = url;
     console.log(url);
-    return this.prisma.users_tracks.create({ data: createUsersTracksInput, include: {
-      User: true,
-      Track: true,
-      Album: true,
-    } });
+    return this.prisma.users_tracks.create({
+      data: createUsersTracksInput,
+      include: {
+        User: true,
+        Track: true,
+        Album: true,
+      },
+    });
   }
 
   findAll() {
@@ -28,11 +31,14 @@ export class UsersTracksService {
   }
 
   findOne(usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput) {
-    const users_track = this.prisma.users_tracks.findUnique({where: usersTracksWhereUniqueInput, include: {
-      User: true,
-      Track: true,
-      Album: true,
-    }});
+    const users_track = this.prisma.users_tracks.findUnique({
+      where: usersTracksWhereUniqueInput,
+      include: {
+        User: true,
+        Track: true,
+        Album: true,
+      },
+    });
     return users_track;
   }
 
@@ -43,10 +49,17 @@ export class UsersTracksService {
     return this.prisma.users_tracks.update({
       data: updateUsersTracksInput,
       where: usersTracksWhereInput,
+      include: {
+        User: true,
+        Track: true,
+        Album: true,
+      },
     });
   }
   remove(usersTracksWhereUniqueInput: Prisma.Users_tracksWhereUniqueInput) {
     console.log(usersTracksWhereUniqueInput);
-    return this.prisma.users_tracks.delete({where: usersTracksWhereUniqueInput})
+    return this.prisma.users_tracks.delete({
+      where: usersTracksWhereUniqueInput,
+    });
   }
 }

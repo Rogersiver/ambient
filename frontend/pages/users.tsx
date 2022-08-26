@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUsersQuery } from './getUsersQuery';
+import { useUsersQuery } from '../lib/getUsersQuery';
 import { User } from '../lib/types/user';
 import { useEffect } from 'react';
 

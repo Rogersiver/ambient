@@ -42,12 +42,10 @@ CREATE TABLE
         user_id INT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
         track_id INT,
-        FOREIGN KEY (track_id) REFERENCES Track(id) ON DELETE
-        SET
-            NULL,
-            album_id INT NOT NULL,
-            FOREIGN KEY (album_id) REFERENCES Album(id) ON DELETE CASCADE,
-            url_hash VARCHAR(50) UNIQUE,
-            secret_key VARCHAR(50) UNIQUE,
-            stream_service_name VARCHAR(50) DEFAULT "Various Artists"
+        FOREIGN KEY (track_id) REFERENCES Track(id) ON DELETE SET NULL,
+        album_id INT NOT NULL,
+        FOREIGN KEY (album_id) REFERENCES Album(id) ON DELETE CASCADE,
+        url_hash VARCHAR(50) UNIQUE,
+        secret_key VARCHAR(50) UNIQUE,
+        stream_service_name VARCHAR(50) DEFAULT "Various Artists"
     );

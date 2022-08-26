@@ -4,12 +4,13 @@ import { apolloClient } from '../lib/apolloClient';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../styles/theme';
-
+import GlobalStyles from '../styles/GlobalStyles'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={defaultTheme}>
-        <Component {...pageProps} />
+        <GlobalStyles/>
+          <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>
   );

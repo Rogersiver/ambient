@@ -1,17 +1,15 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useContext} from 'react';
 import { motion } from 'framer-motion';
-
 const GreetingText = styled(motion.h1)`
-  padding-top: 5vh;
-  padding-left: 5vh;
-  color: ${(props) => props.theme.palette.colors.purple['400']};
+  text-align: center;
+  font-size: 6vh;
+  color: ${(props) => props.theme.palette.common.black};
 `;
 const GreetingContainer = styled.div``;
 
 const Component = (props: any) => {
   const { name } = props;
-
   return (
     <GreetingContainer>
       <GreetingText
@@ -19,7 +17,7 @@ const Component = (props: any) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
       >
-        <div>Hello, {name} </div>
+        <div>Hey {name},</div>
       </GreetingText>
     </GreetingContainer>
   );

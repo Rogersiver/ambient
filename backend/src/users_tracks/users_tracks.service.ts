@@ -8,7 +8,6 @@ export class UsersTracksService {
   create(createUsersTracksInput: Prisma.Users_tracksCreateInput) {
     const url = Math.random().toString(36).substring(2, 15);
     createUsersTracksInput.url_hash = url;
-    console.log(url);
     return this.prisma.users_tracks.create({
       data: createUsersTracksInput,
       include: {
